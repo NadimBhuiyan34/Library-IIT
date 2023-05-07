@@ -3,6 +3,12 @@
 
      
 	<x-slot name="title">Teacher</x-slot>
+   <div class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2>Teacher</h2>
+        <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+      </div>
+    </div>
  <section class="mt-5 container">
      <div class="row">
           <div class="input-group mb-2 w-50 mx-auto" >

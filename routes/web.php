@@ -12,6 +12,9 @@ use App\Http\Controllers\ReturnBookController;
 use App\Http\Controllers\ReissueBookController; 
 use App\Http\Controllers\TeacherController; 
 use App\Http\Controllers\StudentController; 
+use App\Http\Controllers\ContactUsController; 
+use App\Http\Controllers\AboutUsController; 
+use App\Http\Controllers\EventController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +47,24 @@ Route::middleware('auth')->controller(LibraryController::class)->group(function(
     Route::get('/user-reissue/{id}','reissue')->name('user.reissue');
 
 });
+
+Route::middleware('auth')->controller(ContactUsController::class)->group(function(){
+ 
+  Route::get('/user/contactus','index')->name('user.contactus.index');
+  Route::Post('/contactus','store')->name('user.contactus.store');
+
+});
+
+Route::middleware('auth')->controller(AboutUsController::class)->group(function(){
+ 
+  Route::get('/user/aboutus','index')->name('user.aboutus.index');
+});
+
+Route::middleware('auth')->controller(EventController::class)->group(function(){
+ 
+  Route::get('/user/event','index')->name('user.event.index');
+});
+
 // end frontend all route
 
 // admin category,carousel,and book add

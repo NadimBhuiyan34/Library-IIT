@@ -31,8 +31,9 @@
         
 
 
-          <li><a href="contact.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{ route('user.aboutus.index') }}">About Us</a></li>
+          <li><a href="{{ route('user.event.index') }}">Event</a></li>
+          <li><a href="{{ route('user.contactus.index') }}">Contact</a></li>
           <li><a href="{{ route('dashboard') }}">Admin</a></li>
         
         

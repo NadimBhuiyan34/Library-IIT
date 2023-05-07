@@ -24,10 +24,10 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 step:5 php artisan key:generate
 step:6 php artisan migrate --seed
-
+step:7 php artisan storage:link
 for fine automaticly add
-step:7 php artisan schedule:work (terminal 1)
-step: 8 php artisan serve (terminal 2)
+step:8 php artisan schedule:work (terminal 1)
+step:9 php artisan serve (terminal 2)
 
 Login for
 username: nadim@gmail.com
