@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
     $schedule->command('calculate:fine')->everyTwoMinutes();
+    $schedule->command('delete:old-approved-data')->everyTwoMinutes();
        $schedule->command('send:overdue-emails')->daily();
 
 

@@ -120,6 +120,12 @@ Route::middleware('auth')->controller(ReissueBookController::class)->group(funct
   Route::get('/reissuebooks/{id}','reissue')->name('reissue.book.reissue');
 
 });
+Route::middleware('auth')->controller(ProfileController::class)->group(function(){
+ 
+  Route::get('/admin-profile','adminIndex')->name('admin.profile.index');
+  
+
+});
 //end manage book library request and status change of admin
 
 

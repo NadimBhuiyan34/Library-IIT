@@ -1,15 +1,20 @@
-  
- <x-frontend.layout.master>
-	<x-slot name="title">Profile</x-slot>
-  
-   <main id="main">
+<x-backend.layout.master>
+
+      @slot('title')
+    admin-profile
+    @endslot
+     <main id="main">
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs" data-aos="fade-in">
-      <div class="container">
-        <h2>Profile</h2>
-        <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
-      </div>
-    </div> 
+  <div class="pagetitle">
+      <h1>Profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+        
+          <li class="breadcrumb-item active">Profile</li>
+        </ol>
+      </nav>
+    </div>
    <section class="section profile">
       <div class="row">
         <div class="col-xl-4">
@@ -22,7 +27,7 @@
 
               <img src="{{ asset('storage/profiles').'/'.$user->profile->image }}" alt="Profile" class="rounded-circle" style="width:100px ;height:100px">
               <h2>{{ $user->name }}</h2>
-              <span class="badge bg-success">{{ $user->profile->profession }}</span>
+              <span class="badge bg-success">{{ucfirst($user->role)  }}</span>
               <div class="gap-x-3 mt-2 ">
                 <a href="{{ $user->profile->twiter_url }}" class="twitter"><i class="bi bi-twitter text-info fs-5 me-2"></i></a>
                 <a href="{{ $user->profile->facebook_url }}" class="facebook"><i class="bi bi-facebook text-primary fs-5 me-2"></i></a>
@@ -315,11 +320,6 @@
    <!-- End #main -->    
       @endforeach   
  
-
-<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
- 
-
-
  <script>
    function previewImage() {
   var preview = document.getElementById('preview-image');
@@ -338,37 +338,26 @@
  
     
     
-</script>   
- 
+</script>  
 
- <script>
-    // get the search input field and all the card elements
-const searchInput = document.getElementById('search');
-const cards = document.querySelectorAll('.card');
 
-// add event listener to search input field
-searchInput.addEventListener('input', filterCards);
 
-function filterCards() {
-  // get the search input value and convert it to lowercase
-  const searchValue = searchInput.value.toLowerCase();
-
-  // loop through all the card elements and check if their text content matches the search input value
-  for (let i = 0; i < cards.length; i++) {
-    const card = cards[i];
-    const cardTitle = card.querySelector('h6').textContent.toLowerCase();
-    const cardSubtitle = card.querySelector('small').textContent.toLowerCase();
-    const cardDate = card.querySelector('p').textContent.toLowerCase();
-    const isMatch = cardTitle.includes(searchValue) || cardSubtitle.includes(searchValue) || cardDate.includes(searchValue);
-
-    // show or hide the card elements based on the search results
-    if (isMatch) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
+  
+  <script>
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-  }
-}
-
+});
   </script>
-</x-frontend.layout.master>
+  <script>
+    $(document).ready(function(){
+        $(document).on('click','.add_category',function(e){
+            e.preventDefualt();
+            let title=$('#title').val();
+            let description=$('#description').val();
+            console.log(title+description);
+        })
+    })
+  </script>
+</x-backend.layout.master>

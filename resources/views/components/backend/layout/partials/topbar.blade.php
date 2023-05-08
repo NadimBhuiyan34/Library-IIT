@@ -175,15 +175,15 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{ Str::ucfirst(auth()->user()->name) }}</h6>
+              <span>{{ Str::ucfirst(auth()->user()->role) }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.profile.index') }}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -213,10 +213,18 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
+             
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <a class="dropdown-item d-flex align-items-center btn"
+                          onclick="event.preventDefault();
+                                      this.closest('form').submit();">
+                                        <i class="bi bi-box-arrow-right"></i>
+                            <span>Sign Out</span>
+                       {{-- {{ __('Log Out') }} --}}
+                  </a>
+                </form>
+
             </li>
 
           </ul><!-- End Profile Dropdown Items -->

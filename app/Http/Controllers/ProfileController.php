@@ -14,6 +14,11 @@ class ProfileController extends Controller
         $user_profile=User::where('id',auth()->user()->id)->get();
         return view('frontend.profile.index',compact('user_profile'));
     }
+    public function adminIndex()
+    {
+        $user_profile=User::where('id',auth()->user()->id)->get();
+        return view('admin.profile.index',compact('user_profile'));
+    }
 
 
     public function updateProfile(Request $request)
@@ -48,7 +53,7 @@ class ProfileController extends Controller
             $profile->twiter_url = $request->input('twiter_url');
             $profile->linkedin_url = $request->input('linkedin_url');
             $profile->profession = $request->input('profession');
-            $profile->image = $filename ?? 'profile.png';
+            $profile->image = $filename ?? $user->profile->image;
 
             $user->save();
             $profile->save();
