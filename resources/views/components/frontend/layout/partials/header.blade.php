@@ -57,7 +57,7 @@
             <span class="ms-2">{{auth()->user()->name}}</span> <i class="bi bi-chevron-down"></i>
           </a>
             <ul>
-              <li><a href="">Profile</a></li>
+              <li><a href="{{ route('user.profile.index') }}">Profile</a></li>
               
              <li><form method="POST" action="{{ route('logout') }}">
                   @csrf

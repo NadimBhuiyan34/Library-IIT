@@ -15,6 +15,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ContactUsController; 
 use App\Http\Controllers\AboutUsController; 
 use App\Http\Controllers\EventController; 
+use App\Http\Controllers\ProfileController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,6 +64,13 @@ Route::middleware('auth')->controller(AboutUsController::class)->group(function(
 Route::middleware('auth')->controller(EventController::class)->group(function(){
  
   Route::get('/user/event','index')->name('user.event.index');
+});
+
+Route::middleware('auth')->controller(ProfileController::class)->group(function(){
+ 
+  Route::get('/user/profile','index')->name('user.profile.index');
+  Route::patch('/user/profile','updateProfile')->name('user.profile.update');
+  Route::patch('/change/password','changePassword')->name('user.change.password');
 });
 
 // end frontend all route

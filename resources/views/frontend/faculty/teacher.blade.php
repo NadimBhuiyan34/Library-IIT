@@ -1,61 +1,60 @@
   
  <x-frontend.layout.master>
-
-     
+ 
 	<x-slot name="title">Teacher</x-slot>
-   <div class="breadcrumbs" data-aos="fade-in">
+    <main id="main" data-aos="fade-in">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
       <div class="container">
         <h2>Teacher</h2>
         <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
       </div>
-    </div>
- <section class="mt-5 container">
-     <div class="row">
-          <div class="input-group mb-2 w-50 mx-auto" >
-           <input type="text" class="form-control shadow" placeholder="Search here" style="border-radius:20px;" id="search">
- 
-          </div>
-       </div>
-        <div class="row ">
-       @foreach ($user_teacher as $teacher)
-         
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          @foreach ($user_teacher as $teacher)
+            
       
-        <div class="col-md-3 col-6 col-xl-3 col-sm-6 col-md-4 mx-auto gap-1">
-
-           <div class="card p-2 py-3 text-center border-left-info mx-auto mb-3">
-                    
-        <div class="img mb-2 d-flex">
-
-            <img src="{{asset('storage/profiles/'.$teacher->profile->image)}}" alt="Generic placeholder image" class="img-fluid mx-auto"
-                  style="width: 120px; border-radius: 10px; height:120px">
-
-               <span class="position-absolute translate-middle badge rounded-pill bg-danger top-1 start-90 ms-4 shadow">
-   <strong class="">{{ $teacher->status === '0' ? 'InActive' : 'Active' }}</strong>
-
-    <span class="visually-hidden">unread messages</span>
-  </span>
-            
-        </div>
-
-            <h6 style="color:#041f8a">{{ strtoupper($teacher->name) }}</h6>
-            <small>Email: {{ $teacher->email }}</small>
-            <small>Mobile: {{ $teacher->profile->mobile ==true?$teacher->profile->mobile:'01-------' }}</small>
-            
-            <small>Joining Date : {{ $teacher->created_at->format('Y-m-d')}}</small>
-            
-
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch ">
+            <div class="member border-start border-info px-2">
+              <img src="{{ asset('storage/profiles').'/'.$teacher->profile->image }}" class="img-fluid rounded-5 mt-2" alt="" style="height:200px; width:200px">
+              <div class="member-content">
+                <h4>{{ $teacher->name }}</h4>
+                <span>{{ $teacher->profile->profession  ? $teacher->profile->profession:'No proffession'}}</span>
+                 <span><i class="bi bi-envelope me-1"></i>{{ $teacher->email }}</span>
+                 <span><i class="bi bi-phone me-1"></i>{{ $teacher->profile->mobile ?  $teacher->profile->mobile : '01255-----' }}</span>
+                <p>
+                   {{ $teacher->profile->description}}
+                </p>
+                <div class="social">
+                  <a href="$teacher->profile->twiter_url"><i class="bi bi-twitter"></i></a>
+                  
+              
+                  <a href="{{ $teacher->profile->facebook_url }}"><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href="$teacher->profile->linkedin_url"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+     @endforeach
         
-        <div class="mt-1 apointment d-flex justify-content-center gap-2">
 
-           <a href=""> <i class="fa-brands fa-square-facebook text-primary"></i></a>
-           <a href=""> <i class="fa-brands fa-twitter text-info"></i></a>
-           
         </div>
-           </div>
-       </div>
-        @endforeach
-        </div>
-  </section>
+
+      </div>
+    </section><!-- End Trainers Section -->
+
+  </main>
+
+
+
+
  <script>
     // get the search input field and all the card elements
 const searchInput = document.getElementById('search');
