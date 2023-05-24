@@ -20,27 +20,7 @@ return new class extends Migration
             $table->string('group')->nullable();
             $table->string('institute')->nullable();
             $table->string('country')->nullable();
-            $table->string('passing_year0000000
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            ')->nullable();
+            $table->string('passing_year')->nullable();
             $table->timestamps();
         });
     }
