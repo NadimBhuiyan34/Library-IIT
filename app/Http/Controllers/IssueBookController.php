@@ -10,9 +10,13 @@ class IssueBookController extends Controller
     //
      public function index()
     {
-     $book_request = BookRequest::where('status','issue')
-    ->latest('created_at')
-    ->get();
+            $book_request = BookRequest::where(function ($query) {
+                $query->where('status', 'issue')
+                    ->orWhere('status', 'overdue');
+            })
+            ->latest('created_at')
+            ->get();
+
 
         return view('admin.manage_request.issue_book',compact('book_request'));
     }

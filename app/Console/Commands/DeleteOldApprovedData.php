@@ -34,10 +34,10 @@ class DeleteOldApprovedData extends Command
             ->get();
         foreach ($overdueRequests as $request) {
     // Get the book associated with this request
-          $stock = $request->product->bookquantity;
+          $stock = $request->product;
 
     // Increase the book quantity by 1
-        $book->increment('quantity');
+        $stock->increment('bookquantity');
 
     // Delete the request
          $request->delete();

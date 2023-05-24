@@ -15,26 +15,7 @@ class LibraryController extends Controller
     ->latest('created_at')
     ->get();
      
-      
-//        $overdueRequests = BookRequest::where('return_date', '<', Carbon::now())
-//             ->where('status', '!=', 'return')
-//             ->get();
-
-//     //   @dd($overdueRequests );
-// foreach ($overdueRequests as $request) {
-//             $issueDate = Carbon::parse($request->issue_date);
-//             $returnDate = Carbon::parse($request->return_date);
-
-//             $daysOverdue = $issueDate->diffInDays($returnDate, false);
-//             //  @dd($daysOverdue);
-//             $fine = $daysOverdue > 0 ? $daysOverdue * 2 : 0;
-
-//             $request->fine = $fine;
-//             $request->status = 'overdue';
-
-//             $request->save();
-//         }
-
+   
 
         return view('frontend.library.dashboard',compact('book_request'));
     }
@@ -53,6 +34,13 @@ class LibraryController extends Controller
                                 ->get();
         return view('frontend.faculty.teacher',compact('user_teacher'));
     }
+    public function teacherDetails($id)
+    {
+          $teacherDetails = User::where('id', $id)->first();
+        return view('frontend.faculty.teacher-details',compact('teacherDetails'));
+    }
+
+
     public function studentlist()
     {
          $user_student = User::where('role','student')

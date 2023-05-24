@@ -27,6 +27,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Approved Id</th>
                     <th scope="col">Return Date</th>
+                    <th scope="col">Fine</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -40,7 +41,9 @@
                     <td>{{ $book->users->name }}</td>
                     
                     <td>{{ $book->approved_id }} </td>
+                    
                     <td>{{ $book->return_date}} </td>
+                    <td>{{ $book->fine}} </td>
                     <td><a href="{{ route('issue.book.return',['id'=>$book->id,'book_id'=>$book->product->id]) }}" class="btn btn-success btn-sm">Return</a></td>
                     
                   </tr>

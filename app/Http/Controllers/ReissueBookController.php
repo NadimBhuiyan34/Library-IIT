@@ -11,6 +11,7 @@ class ReissueBookController extends Controller
     {
      $book_request = BookRequest::where('reissue','reissue')
                                 ->where('fine',0)
+                                ->where('return_date','<',Carbon::today())
                                  ->latest('created_at')
                                  ->get();
 

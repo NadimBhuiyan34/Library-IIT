@@ -38,8 +38,12 @@
                   <a href="{{ $teacher->profile->facebook_url }}"><i class="bi bi-facebook"></i></a>
                   <a href=""><i class="bi bi-instagram"></i></a>
                   <a href="$teacher->profile->linkedin_url"><i class="bi bi-linkedin"></i></a>
+                 
                 </div>
+                <a href="{{ route('teacher-details', ['id' => $teacher->id]) }}" class="btn btn-sm btn-primary">Read More</a>
+
               </div>
+               
             </div>
           </div>
      @endforeach
