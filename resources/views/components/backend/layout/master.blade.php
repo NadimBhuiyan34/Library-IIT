@@ -1,3 +1,4 @@
+@props(['isAuth' => false])
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -34,16 +35,15 @@
 
     </head>
     <body class="sb-nav-fixed">
-        <x-backend.layout.partials.topbar/>
-      
-        
+        @if (!$isAuth)
+            <x-backend.layout.partials.topbar/>
             <x-backend.layout.partials.sidebar/>
-           
- 
-               
-               {{ $slot }}
-               
-                <x-backend.layout.partials.footer/>
+        @endif
+
+                {{ $slot }}
+                @if (!$isAuth)
+                    <x-backend.layout.partials.footer/>
+                @endif
             </div>
 
         </div>
