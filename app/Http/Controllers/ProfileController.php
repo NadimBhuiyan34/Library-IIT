@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
- 
+
 class ProfileController extends Controller
 {
     public function index()
     {
         $user_profile=User::where('id',auth()->user()->id)->get();
-        return view('frontend.profile.index',compact('user_profile'));
+        $research_supervisions = auth()->user()->researchSupervisions()->get();
+        return view('frontend.profile.index',compact('user_profile', 'research_supervisions'));
     }
     public function adminIndex()
     {
@@ -35,7 +36,7 @@ class ProfileController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
         $user = Auth::user();
-            
+
         if($file=$request->file('image')){
         $filename=date('dmY').time().'.'.$file->getClientOriginalExtension();
         $file->move(storage_path('app/public/profiles'),$filename);
@@ -43,7 +44,7 @@ class ProfileController extends Controller
 
 
              $user->name = $request->input('name');
-             
+
 
             $profile = $user->profile;
             $profile->mobile = $request->input('mobile');
@@ -58,8 +59,8 @@ class ProfileController extends Controller
             $user->save();
             $profile->save();
                return redirect()->back()->withMessage('profile updated successfully')->withType('success');
- 
-    } 
+
+    }
 
     public function changePassword(Request $request)
     {

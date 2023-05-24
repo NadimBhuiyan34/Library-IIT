@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(BookRequest::class);
     }
+
+    public function researchSupervisions()
+    {
+        return $this->hasMany(ResearchSupervision::class);
+    }
 }

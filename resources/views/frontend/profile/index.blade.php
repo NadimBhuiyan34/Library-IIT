@@ -1,7 +1,7 @@
-  
+
  <x-frontend.layout.master>
 	<x-slot name="title">Profile</x-slot>
-  
+
    <main id="main">
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
@@ -9,14 +9,14 @@
         <h2>Profile</h2>
         <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
       </div>
-    </div> 
+    </div>
    <section class="section profile">
       <div class="row">
         <div class="col-xl-4">
             <x-backend.alertmessage.alertmessage type="success"/>
        @foreach ($user_profile as $user)
-           
-    
+
+
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
@@ -55,6 +55,10 @@
 
                 <li class="nav-item">
                   <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#research-supervisions">Research Supervisions</button>
                 </li>
 
               </ul>
@@ -102,6 +106,56 @@
                   </div>
 
                 </div>
+
+                {{-- Research supervisions --}}
+
+                <div class="tab-pane fade research-supervisions" id="research-supervisions">
+                  <h5 class="card-title">Research supervisions</h5>
+                  <h6 class="text-end pe-5"><a class="btn btn-primary" href="{{route('research-supervisions.create')}}">Add new</a></h6>
+
+                  <div class="row">
+                    <table class="table table-responsive">
+                      <thead>
+                        <tr>
+                          <th>Level of study</th>
+                          <th>Title</th>
+                          <th>Supervisor(s)</th>
+                          <th>Student(s)</th>
+                          <th>Area of research</th>
+                          <th>Current completion</th>
+                          <th width="200px">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @forelse ($research_supervisions as $rs)
+                        <tr>
+                          <td>{{ $rs->level_of_study }}</td>
+                          <td>{{ $rs->title }}</td>
+                          <td>{{ $rs->supervisors }}</td>
+                          <td>{{ $rs->students }}</td>
+                          <td>{{ $rs->area_of_research }}</td>
+                          <td>{{ $rs->completion }}</td>
+                          <td>
+                            <a href="{{ route('research-supervisions.edit', $rs->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
+                            <form class="d-inline" method="post" action="{{ route('research-supervisions.destroy', $rs->id) }}">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        @empty
+                        <tr>
+                          <td colspan="6" class="text-center">
+                            No research supervisions.
+                          </td>
+                        </tr>
+                        @endforelse
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
 {{-- profile edit --}}
                 <div class="tab-pane fade profile-edit pt-3 " id="profile-edit">
 
@@ -138,7 +192,7 @@
                         <textarea name="description" class="form-control" id="about" style="height: 100px">{{ $user->profile->description }}</textarea>
                       </div>
                     </div>
-{{-- 
+{{--
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
                       <div class="col-md-8 col-lg-9">
@@ -258,7 +312,7 @@
 
                 </div>
 
-                <div class="tab-pane fade pt-3 show active" id="profile-change-password">
+                <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
                   <form action="{{ route('user.change.password') }}" method="post">
                     @csrf
@@ -312,12 +366,12 @@
     </section>
 
   </main>
-   <!-- End #main -->    
-      @endforeach   
- 
+   <!-- End #main -->
+      @endforeach
+
 
 <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
- 
+
 
 
  <script>
@@ -335,11 +389,11 @@
     preview.src = "{{ asset('storage/profiles').'/'.$user->profile->image }}";
   }
 }
- 
-    
-    
-</script>   
- 
+
+
+
+</script>
+
 
  <script>
     // get the search input field and all the card elements

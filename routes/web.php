@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CarouselController;
+// use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\BookController; 
 use App\Http\Controllers\RequestBookController; 
 use App\Http\Controllers\ApprovedBookController; 
@@ -15,7 +15,9 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ContactUsController; 
 use App\Http\Controllers\AboutUsController; 
 use App\Http\Controllers\EventController; 
-use App\Http\Controllers\ProfileController; 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResearchSupervisionController;
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,6 +69,10 @@ Route::middleware('auth')->controller(EventController::class)->group(function(){
   Route::get('/user/event','index')->name('user.event.index');
 });
 
+Route::middleware('auth')->group(function() {
+  Route::resource('research-supervisions', ResearchSupervisionController::class);
+});
+
 Route::middleware('auth')->controller(ProfileController::class)->group(function(){
  
   Route::get('/user/profile','index')->name('user.profile.index');
@@ -78,7 +84,7 @@ Route::middleware('auth')->controller(ProfileController::class)->group(function(
 
 // admin category,carousel,and book add
  Route::resource('categories', CategoryController::class)->middleware(['auth','isAdmin']);
- Route::resource('carousels', CarouselController::class)->middleware(['auth','isAdmin']);
+//  Route::resource('carousels', CarouselController::class)->middleware(['auth','isAdmin']);
  Route::resource('books', BookController::class)->middleware(['auth','isAdmin']);
 // end admin category,carousel,and book add
 
