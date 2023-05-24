@@ -47,7 +47,7 @@ class User extends Authenticatable
     
     public function profile()
     {
-        return $this->hasOne(profile::class);
+        return $this->hasOne(Profile::class);
     }
 
    
@@ -55,5 +55,10 @@ class User extends Authenticatable
     public function requestbook()
     {
         return $this->hasMany(BookRequest::class);
+    }
+
+    public function researchSupervisions()
+    {
+        return $this->hasMany(ResearchSupervision::class);
     }
 }

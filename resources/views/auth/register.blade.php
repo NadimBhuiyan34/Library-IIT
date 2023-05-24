@@ -1,4 +1,4 @@
-  <x-backend.layout.master>
+  <x-backend.layout.master isAuth="true">
     	<x-slot name="title">Register</x-slot>
 
         <section class="" style="margin-top: 100px">
@@ -11,6 +11,8 @@
         <!-- Validation Errors -->
         <x-backend.alertmessage.alertmessage type="success"/>
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        <h4 class="my-2 text-center">Register</h4>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf

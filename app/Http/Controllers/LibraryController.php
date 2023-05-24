@@ -14,17 +14,18 @@ class LibraryController extends Controller
         $book_request = BookRequest::where('user_id', auth()->user()->id)
     ->latest('created_at')
     ->get();
-     
-   
 
-        return view('frontend.library.dashboard',compact('book_request'));
+        $request_count = BookRequest::where('user_id', auth()->user()->id)->count();
+        $approved_count = BookRequest::where('user_id', auth()->user()->id)->where('status', 'approved')->count();
+
+        return view('frontend.library.dashboard',compact('book_request', 'request_count', 'approved_count'));
     }
     public function booklist()
     {
         $books = Product::where('bookquantity', '>', 0)
                           ->where('status', '1')
                           ->get();
-        
+
         return view('frontend.library.book-list',compact('books'));
     }
     public function teacherlist()
@@ -46,12 +47,12 @@ class LibraryController extends Controller
          $user_student = User::where('role','student')
                                 ->latest('created_at')
                                 ->get();
-        
+
         return view('frontend.faculty.student',compact('user_student'));
     }
     public function request_store(Request $request)
     {
-       
+
 $count = BookRequest::where('user_id', $request->user_id)
                     ->where(function ($query) {
                         $query->where('status', 'request')
@@ -71,11 +72,11 @@ $check_request = BookRequest::where('user_id', $request->user_id)
      {
               if($count>2 )
       {
-            return redirect()->back()->withMessage('You request only three books')->withType('danger');
+            return redirect()->back()->withMessage('You can request only three books')->withType('danger');
       }
         else
         {
-        
+
 
          $book = BookRequest::create([
         'user_id' => $request->user_id,
@@ -84,30 +85,30 @@ $check_request = BookRequest::where('user_id', $request->user_id)
     ]);
              $t_request = Product::where('id', $request->book_id)
                          ->first();
-            
+
                Product::where('id',$request->book_id)
                     ->update(['total_request' => $t_request->total_request+1]);
-       
-      
+
+
     return redirect()->back()->withMessage('Request sent ')->withType('success');
         }
      }
      else
      {
-                return redirect()->back()->withMessage('You all ready requested ')->withType('success');
+                return redirect()->back()->withMessage('You already requested ')->withType('success');
      }
-       
-    
 
-      
+
+
+
     }
 
-      
+
 public function reissue($id)
 {
     $check_status =  BookRequest::where('id',$id)->update(['reissue'=>'reissue']);
     return redirect()->back()->withMessage('Reissue sent ')->withType('success');
-                    
+
 }
 
 
@@ -118,7 +119,7 @@ public function destroy($id,$book_id)
                                   ->first();
       $stock = Product::where('id', $book_id)
                            ->first();
-                           
+
 
        if($check_status->status=='approved' || $check_status->status=='issue' || $check_status->status=='return')
      {
@@ -132,15 +133,15 @@ public function destroy($id,$book_id)
      {
 
             BookRequest::findOrFail($id)->delete();
-            
+
              $stock->total_request = $stock->total_request - 1;
              $stock->save();
      }
-    
 
-    
+
+
 
       return redirect()->back()->withMessage('Your request cancel');
-    
+
 }
 }
