@@ -1,8 +1,8 @@
 <x-backend.layout.master>
     @slot('title')
-    DashBoard_Admin
+    Dashboard Admin
     @endslot
-  <main id="main" class="main">
+  <main id="main" class="main" style="min-height: calc(100vh - 150px)">
 
     <div class="pagetitle">
       <h1>Dashboard</h1>
@@ -22,8 +22,16 @@
           <div class="row">
 
             <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
+            <div class="col-xxl-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Total requested book</div>
+                        <div class="d-flex justify-content-center">
+                            <h5>{{ $request_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+              {{-- <div class="card info-card sales-card">
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -53,12 +61,20 @@
                   </div>
                 </div>
 
-              </div>
+              </div> --}}
             </div><!-- End Sales Card -->
 
             <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
+            <div class="col-xxl-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Total approved book</div>
+                        <div class="d-flex justify-content-center">
+                            <h5>{{ $approved_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+              {{-- <div class="card info-card revenue-card">
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -88,13 +104,20 @@
                   </div>
                 </div>
 
-              </div>
+              </div> --}}
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
-
-              <div class="card info-card customers-card">
+            <div class="col-xxl-3 col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Total reissued book</div>
+                        <div class="d-flex justify-content-center">
+                            <h5>{{ $reissued_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+              {{-- <div class="card info-card customers-card">
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -124,12 +147,22 @@
                   </div>
 
                 </div>
-              </div>
+              </div> --}}
 
             </div><!-- End Customers Card -->
 
+            <div class="col-xxl-3 col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Total returned book</div>
+                        <div class="d-flex justify-content-center">
+                            <h5>{{ $returned_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Reports -->
-            <div class="col-12">
+            {{-- <div class="col-12">
               <div class="card">
 
                 <div class="filter">
@@ -208,10 +241,11 @@
                 </div>
 
               </div>
-            </div><!-- End Reports -->
+            </div> --}}
+            <!-- End Reports -->
 
             <!-- Recent Sales -->
-            <div class="col-12">
+            {{-- <div class="col-12">
               <div class="card recent-sales overflow-auto">
 
                 <div class="filter">
@@ -282,10 +316,11 @@
                 </div>
 
               </div>
-            </div><!-- End Recent Sales -->
+            </div> --}}
+            <!-- End Recent Sales -->
 
             <!-- Top Selling -->
-            <div class="col-12">
+            {{-- <div class="col-12">
               <div class="card top-selling overflow-auto">
 
                 <div class="filter">
@@ -356,13 +391,14 @@
                 </div>
 
               </div>
-            </div><!-- End Top Selling -->
+            </div> --}}
+            <!-- End Top Selling -->
 
           </div>
         </div><!-- End Left side columns -->
 
         <!-- Right side columns -->
-        <div class="col-lg-4">
+        {{-- <div class="col-lg-4">
 
           <!-- Recent Activity -->
           <div class="card">
@@ -643,7 +679,8 @@
             </div>
           </div><!-- End News & Updates -->
 
-        </div><!-- End Right side columns -->
+        </div> --}}
+        <!-- End Right side columns -->
 
       </div>
     </section>
@@ -656,7 +693,7 @@
     var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
     var yValues = [55, 49, 44, 24, 15];
     var barColors = ["red", "green","blue","orange","brown"];
-    
+
     new Chart("myChart1", {
       type: "bar",
       data: {
@@ -675,5 +712,5 @@
       }
     });
     </script>
-    
+
 </x-backend.layout.master>

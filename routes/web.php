@@ -14,6 +14,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResearchSupervisionController;
@@ -33,9 +34,7 @@ Route::get('/', function () {
     return view('frontend/home');
 })->name('homepage');
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth','isAdmin'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth','isAdmin'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 // frontend all route
