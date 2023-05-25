@@ -39,7 +39,7 @@ class LibraryController extends Controller
     }
     public function teacherDetails($id)
     {
-          $teacherDetails = User::where('id', $id)->first();
+          $teacherDetails = User::where('id', $id)->with('researchSupervisions')->first();
         return view('frontend.faculty.teacher-details',compact('teacherDetails'));
     }
 
