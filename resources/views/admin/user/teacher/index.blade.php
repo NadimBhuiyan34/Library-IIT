@@ -12,7 +12,7 @@
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
           <li class="breadcrumb-item active">TeacherList</li>
         </ol>
-        
+
       </nav>
     </div><!-- End Page Title -->
 
@@ -36,19 +36,19 @@
                     <th scope="row">1</th>
                     <td>{{ $teacher->name }}</td>
                     <td>{{$teacher->email}}</td>
-                  
+
                     <td>{{ $teacher->profile->mobile }}</td>
-                    
+
                     <td class="text-center"> <img src="{{asset('storage/profiles/'.$teacher->profile->image)}}" alt="profile"style="border-radius: 50%;width:50px;height:50px;" class="img-fluid"/></td>
                     <td>{{ $teacher->status }} </td>
                     <td class="d-flex gap-2">
                         <a href="{{ route('teachers.edit',['teacher'=>$teacher->id]) }}" class="btn btn-success btn-sm">Edit</a>
-                        <a href="{{ route('teachers.show',['teacher'=>$teacher->id]) }}" class="btn btn-primary btn-sm">Show</a>
+                        <a href="{{ route('teacher-details',['id'=>$teacher->id]) }}" class="btn btn-primary btn-sm">Show</a>
                          <form action="{{ route('teachers.destroy',['teacher'=>$teacher->id]) }}">
                               <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                          </form>
                     </td>
-                    
+
                   </tr>
                   @endforeach
                 </tbody>
@@ -56,8 +56,8 @@
 
 
 
-      
-       
+
+
     </section>
 
   </main><!-- End #main -->
@@ -68,7 +68,7 @@
 
 
 
-  
+
   <script>
     $.ajaxSetup({
     headers: {
