@@ -17,8 +17,10 @@ class LibraryController extends Controller
 
         $request_count = BookRequest::where('user_id', auth()->user()->id)->count();
         $approved_count = BookRequest::where('user_id', auth()->user()->id)->where('status', 'approved')->count();
+        $reissued_count = BookRequest::where('user_id', auth()->user()->id)->where('reissue', 'reissue')->count();
+        $returned_count = BookRequest::where('user_id', auth()->user()->id)->where('status', 'return')->count();
 
-        return view('frontend.library.dashboard',compact('book_request', 'request_count', 'approved_count'));
+        return view('frontend.library.dashboard',compact('book_request', 'request_count', 'approved_count', 'reissued_count', 'returned_count'));
     }
     public function booklist()
     {
