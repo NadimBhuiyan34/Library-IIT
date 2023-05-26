@@ -1,6 +1,6 @@
-  
+
  <x-frontend.layout.master>
- 
+
 	<x-slot name="title">Teacher-details</x-slot>
     <main id="main" data-aos="fade-in">
 
@@ -67,7 +67,7 @@
 
                     <div class="tab-pane fade show active" id="education" role="tabpanel"
                         aria-labelledby="education-tab">
-                       
+
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -84,7 +84,7 @@
                                     <td>Computer Science</td>
                                     <td>ABC Board</td>
                                     <td>USA</td>
-                                   
+
                                     <td>2023</td>
                                 </tr>
                                 <tr>
@@ -134,16 +134,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($teacherDetails->researchSupervisions as $rs)
                                 <tr>
-                                    <td>Bachelors</td>
-                                    <td>Design & Development of institute of information technology</td>
-                                    <td>Md Audir Rahman</td>
+                                    <td>{{ $rs->level_of_study }}</td>
+                                    <td>{{ $rs->title }}</td>
+                                    <td>{{ $rs->supervisors }}</td>
                                     <td></td>
-                                    <td>Md Azad Hossain</td>
-                                    <td></td>
-                                    <td>Running</td>
+                                    <td>{{ $rs->students }}</td>
+                                    <td>{{ $rs->area_of_research }}</td>
+                                    <td>{{ $rs->completion }}</td>
                                 </tr>
-                               
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">
+                                            No research supervisions.
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                         <h2>Project/Research Work</h2>
@@ -156,7 +163,7 @@
                                     <th>From Date</th>
                                     <th>To Date	</th>
                                     <th>Collaboration</th>
-                                   
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,20 +175,20 @@
 
                                     <td>2-2-22</td>
                                     <td>1-1-23</td>
-                                    
+
                                 </tr>
-                               
+
                             </tbody>
                         </table>
                     </div>
                     <div class="tab-pane fade" id="teachings" role="tabpanel" aria-labelledby="teachings-tab">
-                       
+
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Course NAme</th>
                                     <th>Course Code</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -190,16 +197,16 @@
                                     <td>CSE3105</td>
                                 </tr>
                                 <tr>
-                                    
+
                                     <td>Etics</td>
                                     <td>Se320</td>
                                 </tr>
                                 <tr>
-                                   
+
                                     <td>Security</td>
-                                    
+
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -221,12 +228,12 @@
                                     <td> <a href="https://www.example.com">Example.com</a>
                                     </body></td>
                                 </tr>
-                               
+
                             </tbody>
                         </table>
                     </div>
                     <div class="tab-pane fade" id="award" role="tabpanel" aria-labelledby="award-tab">
-                        
+
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -245,7 +252,7 @@
                                     <td>2021-01-01</td>
                                     <td>2021-01-01</td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -256,10 +263,10 @@
                        <p>Email:azad@gmail.com</p>
                        <p>Mobile:018</p>
                        <p><a href="https://www.example.com">Click here to visit Example.com</a></p>
-                       
+
                     </div>
                     <div class="tab-pane fade " id="membership" role="tabpanel" aria-labelledby="membership-tab">
-                        
+
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -279,7 +286,7 @@
                                     <td>2021-01-01</td>
                                     <td>2021-01-01</td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
