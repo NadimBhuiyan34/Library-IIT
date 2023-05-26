@@ -5,6 +5,9 @@ use App\Mail\OverdueNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Console\Command;
 use App\Models\BookRequest;
+use App\Notifications\OverdueNotification as NotificationsOverdueNotification;
+use Carbon\Carbon;
+
 class SendOverdueEmails extends Command
 {
     /**
@@ -28,22 +31,30 @@ class SendOverdueEmails extends Command
      */
     public function handle()
     {
-           $overdueRequests = BookRequest::where('return_date', '<', Carbon::now())
-            ->where('status', '!=', 'return')
-            ->get();
+        $overdueRequests = BookRequest::where('return_date', '=', Carbon::now()->addDay())
+                            ->whereNull('notified_at')
+                            ->where('status', '!=', 'return')
+                            ->get();
 
         foreach ($overdueRequests as $request) {
-            $userName = $request->users->name;
-            $userEmail = $request->users->email;
-            $book_title = $request->product->booktitle;
-            $fine = $request->fine;
+            // $userName = $request->users->name;
+            // $userEmail = $request->users->email;
+            // $book_title = $request->product->booktitle;
+            // $fine = $request->fine;
             // $daysOverdue = Carbon::parse($request->return_date)->diffInDays(Carbon::now());
 
-            Mail::to($userEmail)->send(new OverdueNotification( $userName,  $book_title, $fine));
+            // Mail::to($userEmail)->send(new OverdueNotification( $userName,  $book_title, $fine));
+
+            $request->users()->notify(new NotificationsOverdueNotification($request));
+
 
             // Mark the book request as notified to prevent multiple notifications
-            $request->notified = true;
-            $request->save();
+            // $request->notified = true;
+            // $request->save();
+
+            $request->update([
+                'notified_at' => now(),
+            ]);
         }
         return Command::SUCCESS;
     }
