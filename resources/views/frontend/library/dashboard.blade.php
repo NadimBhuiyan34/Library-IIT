@@ -14,24 +14,24 @@
                <div class="col-xl-3 col-md-6">
 			<div class="card bg-primary text-white mb-4 border-left-danger">
 				<div class="card-body">
-                    <h4>{{ $request_count }}</h4> Total Requested Book</div>
-				<div class="card-footer d-flex align-items-center justify-content-between">
+                    <h4>{{ $total_book_count }}</h4> Total Book</div>
+				{{-- <div class="card-footer d-flex align-items-center justify-content-between">
 					<a class="small text-white stretched-link" href="{{ route('request.book.index') }}">View Details</a>
 					<div class="small text-white"><i class="fas fa-angle-right"></i></div>
-				</div>
+				</div> --}}
 			</div>
 		 </div>
                <div class="col-xl-3 col-md-6">
 			<div class="card bg-success text-white mb-4 border-left-danger">
 				<div class="card-body">
-                    <h4>{{ $approved_count }}</h4> Total approved request </div>
-				<div class="card-footer d-flex align-items-center justify-content-between">
+                    <h4>{{ $request_count }}</h4> Total Requested Book</div>
+				{{-- <div class="card-footer d-flex align-items-center justify-content-between">
 					<a class="small text-white stretched-link" href="{{ route('approved.book.index') }}">View Details</a>
 					<div class="small text-white"><i class="fas fa-angle-right"></i></div>
-				</div>
+				</div> --}}
 			</div>
 		 </div>
-               <div class="col-xl-3 col-md-6">
+               {{-- <div class="col-xl-3 col-md-6">
 			<div class="card bg-warning text-white mb-4 border-left-danger">
 				<div class="card-body">
                     <h4>{{ $reissued_count }}</h4> Total re-issued Book </div>
@@ -40,15 +40,15 @@
 					<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 				</div>
 			</div>
-		 </div>
+		 </div> --}}
                <div class="col-xl-3 col-md-6">
 			<div class="card bg-info text-white mb-4 border-left-danger">
 				<div class="card-body">
                     <h4>{{ $returned_count }}</h4> Total returned Book </div>
-				<div class="card-footer d-flex align-items-center justify-content-between">
+				{{-- <div class="card-footer d-flex align-items-center justify-content-between">
 					<a class="small text-white stretched-link" href="{{ route('return.book.index') }}">View Details</a>
 					<div class="small text-white"><i class="fas fa-angle-right"></i></div>
-				</div>
+				</div> --}}
 			</div>
 		 </div>
 		{{-- row --}}

@@ -23,8 +23,8 @@
                     <img src="{{ asset('storage/profiles').'/'.$teacherDetails->profile->image }}" class="card-img-top mx-auto" alt="..." style="width:200px;height:200px">
                     <div class="card-body">
                         <h5 class="card-title">{{ $teacherDetails->name }}</h5>
-                        <p class="card-text">Assistant professor</p>
-                        <p class="card-text">Description paragraph goes here.</p>
+                        <p class="card-text">{{ $teacher->profile->profession  ? $teacher->profile->profession:'No proffession'}}</p>
+                        <p class="card-text">{{ $teacher->email }}</p>
                     </div>
                 </div>
             </div>
@@ -192,21 +192,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- $teacherDetails->Teaching as $rs --}}
-                                @forelse ($teacherDetails->Teaching as $tg)
-                                    <tr>
-                                        <td>{{ $tg->course_name }}</td>
-                                        <td>{{ $tg->course_code }}</td>
-                                       
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center">
-                                            No Teachings information found
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            
+                                <tr>
+                                    <td>Data Structure</td>
+                                    <td>CSE3105</td>
+                                </tr>
+                                <tr>
+
+                                    <td>Etics</td>
+                                    <td>Se320</td>
+                                </tr>
+                                <tr>
+
+                                    <td>Security</td>
+
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>

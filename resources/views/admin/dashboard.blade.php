@@ -25,9 +25,9 @@
             <div class="col-xxl-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">Total requested book</div>
+                        <div class="card-title">Total book</div>
                         <div class="d-flex justify-content-center">
-                            <h5>{{ $request_count }}</h5>
+                            <h5>{{ $total_book_count }}</h5>
                         </div>
                     </div>
                 </div>
@@ -68,9 +68,9 @@
             <div class="col-xxl-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">Total approved book</div>
+                        <div class="card-title">Total requested book</div>
                         <div class="d-flex justify-content-center">
-                            <h5>{{ $approved_count }}</h5>
+                            <h5>{{ $request_count }}</h5>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-3 col-xl-6">
+            {{-- <div class="col-xxl-3 col-xl-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">Total reissued book</div>
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-              {{-- <div class="card info-card customers-card">
+              <div class="card info-card customers-card">
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -147,9 +147,9 @@
                   </div>
 
                 </div>
-              </div> --}}
+              </div>
 
-            </div><!-- End Customers Card -->
+            </div><!-- End Customers Card --> --}}
 
             <div class="col-xxl-3 col-xl-6">
                 <div class="card">
