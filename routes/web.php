@@ -35,7 +35,7 @@ Route::get('/', function () {
     return view('frontend/home');
 })->name('homepage');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth','isAdmin'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 // frontend all route
