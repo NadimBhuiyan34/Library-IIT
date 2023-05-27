@@ -12,7 +12,7 @@
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
           <li class="breadcrumb-item active">ReIssueBook</li>
         </ol>
-        
+
       </nav>
     </div><!-- End Page Title -->
 
@@ -33,29 +33,21 @@
                 <tbody>
                     @foreach ($book_request as $book)
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $book->product->booktitle }}</td>
                     <td>{{$book->product->bookauthor}}</td>
-                  
                     <td>{{ $book->users->name }}</td>
-                    
                     <td>{{ $book->approved_id }} </td>
                     <td>{{ $book->return_date}} </td>
-                    <td> 
-                      @if($book->status!='return')
-                      <a href="{{ route('reissue.book.reissue',['id'=>$book->id]) }}" class="btn btn-success btn-sm">Reissue</a> 
+                    <td>
+                      @if($book->status!='return' && $book->reissue == 'reissue')
+                      <a href="{{ route('reissue.book.reissue',['id'=>$book->id]) }}" class="btn btn-success btn-sm">Reissue</a>
                     @endif
                     </td>
-                    
                   </tr>
                   @endforeach
                 </tbody>
               </table>
-
-
-
-      
-       
     </section>
 
   </main><!-- End #main -->
@@ -66,7 +58,7 @@
 
 
 
-  
+
   <script>
     $.ajaxSetup({
     headers: {
@@ -77,7 +69,7 @@
   <script>
     $(document).ready(function(){
         $(document).on('click','.add_category',function(e){
-            e.preventDefualt();
+            e.preventDefault();
             let title=$('#title').val();
             let description=$('#description').val();
             console.log(title+description);
