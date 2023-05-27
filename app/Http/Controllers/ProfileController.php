@@ -14,7 +14,7 @@ class ProfileController extends Controller
         $user_profile=User::where('id',auth()->user()->id)->get();
         $research_supervisions = auth()->user()->researchSupervisions()->get();
         $teachings = auth()->user()->Teaching()->get();
-        $educations = auth()->user()->educations;
+        $educations = auth()->user()->education()->get();
         return view('frontend.profile.index',compact('user_profile', 'research_supervisions','teachings','educations'));
     }
     public function adminIndex()

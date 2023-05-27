@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class BookRequest extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'notified_at' => 'datetime',
+    ];
     protected $table='bookrequests';
-    protected $fillable=['user_id','book_id','return_date','approved_date','status','fine','issue_date','approved_id'];
+    protected $fillable=['user_id','book_id','return_date','approved_date','status','fine','issue_date','approved_id', 'notified_at'];
 
-    
+
 
 
 

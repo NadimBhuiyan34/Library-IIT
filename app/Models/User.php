@@ -44,14 +44,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function profile()
     {
         return $this->hasOne(Profile::class);
     }
 
-   
-    
+
+
     public function requestbook()
     {
         return $this->hasMany(BookRequest::class);
@@ -65,7 +65,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Teaching::class);
     }
-    public function educations()
+    public function education()
     {
         return $this->hasMany(Education::class);
     }
