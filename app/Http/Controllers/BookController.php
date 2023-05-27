@@ -124,7 +124,8 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $product=Product::findOrFail($id)->delete();
-      return redirect()->route('products.index')->withMessage('Successfully Data Deleted')->withType('delete');
+    
     }
+
+   
 }

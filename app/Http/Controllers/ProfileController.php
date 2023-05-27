@@ -15,7 +15,9 @@ class ProfileController extends Controller
         $research_supervisions = auth()->user()->researchSupervisions()->get();
         $teachings = auth()->user()->Teaching()->get();
         $educations = auth()->user()->education()->get();
-        return view('frontend.profile.index',compact('user_profile', 'research_supervisions','teachings','educations'));
+        $publications = auth()->user()->Publication()->get();
+        
+        return view('frontend.profile.index',compact('user_profile', 'research_supervisions','teachings','educations','publications'));
     }
     public function adminIndex()
     {

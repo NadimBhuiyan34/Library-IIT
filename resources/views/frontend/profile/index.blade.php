@@ -74,7 +74,7 @@
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#educations">Education</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#teachings">Teachings</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#publications">Publications</button>
                 </li>
 
               </ul>
@@ -271,6 +271,57 @@
 
                        
                       </tbody>
+                    </table>
+                  </div>
+                </div>
+
+
+                <div class="tab-pane fade publications" id="publications">
+                  <h5 class="card-title">Publications</h5>
+                  <h6 class="text-end pe-5"><a class="btn btn-primary"
+                      href="{{route('publications.create')}}">Add new</a></h6>
+
+                  <div class="row">
+                    <table class="table table-responsive">
+
+                      <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Journal Name</th>
+                            <th>Journal Link</th>
+                            <th width="200px">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($publications as $ps)
+                            <tr>
+                                <td>{{ $ps->title }}</td>
+                                <td>{{ $ps->author }}</td>
+                                <td>{{ $ps->journal_name }}</td>
+                                {{-- <td>{{ $ps->journal_link }}</td> --}}
+                                <td><a href="{{ $ps->journal_link }}"></a></td>
+                                
+                                <td>
+                                    <a href="{{ route('publications.edit', $ps->id) }}"
+                                        class="btn btn-sm btn-outline-warning">Edit</a>
+                                    <form class="d-inline" method="post"
+                                        action="{{ route('publications.destroy', $ps->id) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    No publications information found
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+
                     </table>
                   </div>
                 </div>

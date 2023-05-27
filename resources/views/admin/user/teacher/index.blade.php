@@ -1,9 +1,9 @@
 <x-backend.layout.master>
 
-      @slot('title')
-    teacher-list
-    @endslot
- <main id="main" class="main">
+  @slot('title')
+  teacher-list
+  @endslot
+  <main id="main" class="main">
 
     <div class="pagetitle">
       <h1>Teacher List</h1>
@@ -17,42 +17,44 @@
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
-         <x-backend.alertmessage.alertmessage type="success"/>
-	 <table class="table table-bordered border-primary">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Mobile</th>
-                    <th scope="col">image</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($user_teacher as $teacher)
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>{{ $teacher->name }}</td>
-                    <td>{{$teacher->email}}</td>
+      <x-backend.alertmessage.alertmessage type="success" />
+      <table class="table table-bordered border-primary">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">image</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($user_teacher as $teacher)
+          <tr>
+            {{-- <th scope="row">1</th> --}}
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $teacher->name }}</td>
+            <td>{{$teacher->email}}</td>
 
-                    <td>{{ $teacher->profile->mobile }}</td>
+            <td>{{ $teacher->profile->mobile }}</td>
 
-                    <td class="text-center"> <img src="{{asset('storage/profiles/'.$teacher->profile->image)}}" alt="profile"style="border-radius: 50%;width:50px;height:50px;" class="img-fluid"/></td>
-                    <td>{{ $teacher->status }} </td>
-                    <td class="d-flex gap-2">
-                        <a href="{{ route('teachers.edit',['teacher'=>$teacher->id]) }}" class="btn btn-success btn-sm">Edit</a>
-                        <a href="{{ route('teacher-details',['id'=>$teacher->id]) }}" class="btn btn-primary btn-sm">Show</a>
-                         <form action="{{ route('teachers.destroy',['teacher'=>$teacher->id]) }}">
-                              <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                         </form>
-                    </td>
+            <td class="text-center"> <img src="{{asset('storage/profiles/'.$teacher->profile->image)}}" alt="profile"
+                style="border-radius: 50%;width:50px;height:50px;" class="img-fluid" /></td>
+            <td>{{ $teacher->status }} </td>
+            <td class="d-flex gap-2">
+              <a href="{{ route('teachers.edit',['teacher'=>$teacher->id]) }}" class="btn btn-success btn-sm">Edit</a>
+              <a href="{{ route('teacher-details',['id'=>$teacher->id]) }}" class="btn btn-primary btn-sm">Show</a>
+              <form action="{{ route('teachers.destroy',['teacher'=>$teacher->id]) }}">
+                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+              </form>
+            </td>
 
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
 
 
 

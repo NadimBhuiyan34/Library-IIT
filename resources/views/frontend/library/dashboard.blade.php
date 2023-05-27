@@ -76,7 +76,7 @@
 				 <table class="table table-bordered border-primary">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th >SL</th>
                     <th scope="col">Book Title</th>
                     <th scope="col">Book Author</th>
                                   <th scope="col">Fine</th>
@@ -89,7 +89,8 @@
                 <tbody>
                     @foreach ($book_request as $book)
                   <tr>
-                    <th scope="row">1</th>
+                    <th>{{ $loop->iteration }}</th>
+
                     <td>{{ $book->product->booktitle }}</td>
                     <td>{{$book->product->bookauthor}}</td>
 

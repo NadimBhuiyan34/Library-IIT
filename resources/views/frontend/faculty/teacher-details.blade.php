@@ -79,47 +79,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- @forelse ($teacherDetails->researchSupervisions as $rs) --}}
+                                @forelse ($teacherDetails->education as $edu)
                                 <tr>
-                                    <td>Bachelor's degree</td>
-                                    <td>Computer Science</td>
-                                    <td>ABC Board</td>
-                                    <td>USA</td>
-
-                                    <td>2023</td>
+                                    <td>{{ $edu->degree }}</td>
+                                    <td>{{ $edu->group }}</td>
+                                    <td>{{ $edu->institute }}</td>
+                                    <td>{{ $edu->country }}</td>
+                                    <td>{{ $edu->passing_year }}</td>
+                                    
                                 </tr>
+                                @empty
                                 <tr>
-                                    <td>Master's degree</td>
-                                    <td>Business Administration</td>
-                                    <td>XYZ Board</td>
-                                    <td>Canada</td>
+                                    <td colspan="6" class="text-center">
+                                        No Educations information found.
+                                    </td>
                                 </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
 
                     <div class="tab-pane fade" id="research" role="tabpanel" aria-labelledby="research-tab">
-                        <h2 >Research Interest </h2>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Subject</th>
-                                    <th>Description</th>
-                                    <th>Research Interest (Goal, Target Indicator)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Research project 1</td>
-                                    <td>ABC Research Institute</td>
-                                    <td>AI</td>
-                                </tr>
-                                <tr>
-                                    <td>Research project 2</td>
-                                    <td>XYZ Research Center</td>
-                                    <td>2022-03-15</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                       
                         <h2>Project/Research Supervision</h2>
                         <table class="table table-striped">
                             <thead>
@@ -153,33 +135,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <h2>Project/Research Work</h2>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Subject</th>
-                                    <th>Project Name</th>
-                                    <th>Source of Fund</th>
-                                    <th>From Date</th>
-                                    <th>To Date	</th>
-                                    <th>Collaboration</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Bachelors</td>
-                                    <td>Design & Development of institute of information technology</td>
-                                    <td>Md Audir Rahman</td>
-                                    <td>Md Azad Hossain</td>
-
-                                    <td>2-2-22</td>
-                                    <td>1-1-23</td>
-
-                                </tr>
-
-                            </tbody>
-                        </table>
+                       
                     </div>
                     <div class="tab-pane fade" id="teachings" role="tabpanel" aria-labelledby="teachings-tab">
 
@@ -192,20 +148,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- $teacherDetails->researchSupervisions as $rs --}}
+                                @forelse ($teacherDetails->Teaching as $tg)
                                 <tr>
-                                    <td>Data Structure</td>
-                                    <td>CSE3105</td>
+                                    <td>{{ $tg->course_name }}</td>
+                                    <td>{{ $tg->course_code }}</td>
+                                   
                                 </tr>
+                            @empty
                                 <tr>
-
-                                    <td>Etics</td>
-                                    <td>Se320</td>
+                                    <td colspan="6" class="text-center">
+                                        No Teachings information found
+                                    </td>
                                 </tr>
-                                <tr>
-
-                                    <td>Security</td>
-
-                                </tr>
+                            @endforelse
 
                             </tbody>
                         </table>
@@ -221,13 +177,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- @forelse ($teacherDetails->Teaching as $tg) --}}
+                                @forelse ($teacherDetails->Publication as $ps)
                                 <tr>
-                                    <td>course project 1</td>
-                                    <td>ABC Research Institute</td>
-                                    <td>2021-01-01</td>
-                                    <td> <a href="https://www.example.com">Example.com</a>
-                                    </body></td>
+                                    <td>{{ $ps->title }}</td>
+                                    <td>{{ $ps->author }}</td>
+                                    <td>{{ $ps->journal_name }}</td>
+                                    <td><a href="{{ $ps->journal_link }}"></a></td>
+                                    {{-- <td>{{ $ps->journal_link }}</td> --}}
+                                    
                                 </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        No publications information found
+                                    </td>
+                                </tr>
+                            @endforelse
 
                             </tbody>
                         </table>

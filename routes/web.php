@@ -18,6 +18,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\ResearchSupervisionController;
 use App\Http\Controllers\TeachingController;
 
@@ -80,6 +81,9 @@ Route::middleware('auth')->group(function() {
 });
 Route::middleware('auth')->group(function() {
   Route::resource('educations', EducationController::class);
+});
+Route::middleware('auth')->group(function() {
+  Route::resource('publications', PublicationController::class);
 });
 
 //End Teacher profile info

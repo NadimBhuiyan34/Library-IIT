@@ -84,6 +84,6 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+       ;
     }
 }
