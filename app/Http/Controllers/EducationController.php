@@ -89,7 +89,7 @@ class EducationController extends Controller
             'passing_year' => $request->passing_year,
             
         ]);
-        return redirect()->back()->withMessage('Education updated successfully');
+        return redirect()->route('user.profile.index')->withMessage('Education updated successfully');
     }
 
     /**

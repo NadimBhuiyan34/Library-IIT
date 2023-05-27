@@ -31,7 +31,7 @@ class SendOverdueEmails extends Command
      */
     public function handle()
     {
-        $overdueRequests = BookRequest::where('return_date', '=', Carbon::now()->addDay())
+        $overdueRequests = BookRequest::whereDate('return_date', '=', Carbon::now()->addDay())
                             ->whereNull('notified_at')
                             ->where('status', '!=', 'return')
                             ->get();

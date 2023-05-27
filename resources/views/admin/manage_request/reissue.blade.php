@@ -41,7 +41,11 @@
                     
                     <td>{{ $book->approved_id }} </td>
                     <td>{{ $book->return_date}} </td>
-                    <td><a href="{{ route('reissue.book.reissue',['id'=>$book->id]) }}" class="btn btn-success btn-sm">Reissue</a></td>
+                    <td> 
+                      @if($book->status!='return')
+                      <a href="{{ route('reissue.book.reissue',['id'=>$book->id]) }}" class="btn btn-success btn-sm">Reissue</a> 
+                    @endif
+                    </td>
                     
                   </tr>
                   @endforeach

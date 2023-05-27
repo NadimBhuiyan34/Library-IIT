@@ -102,15 +102,15 @@
                          <a href="{{ route('request.destroy',['id'=>$book->id,'book_id'=>$book->book_id]) }}" class="btn btn-danger btn-sm">Cancel</a>
 
 
-                       @elseif (is_null($book->fine) || $book->fine==0 && $book->reissue==null)
+                       @elseif (is_null($book->fine) || $book->fine==0 && $book->reissue==null && $book->status!='return') 
 
                             <a href="{{ route('user.reissue',['id'=>$book->id]) }}" class="btn btn-primary btn-sm">ReIssue</a>
 
 
                         @elseif($book->reissue=='reissue')
                                  <span class="badge rounded-pill bg-success">{{ $book->reissue }}  </span>
-                        @else
-                            <a href="" class="btn btn-primary btn-sm disabled">ReIssue</a>
+                        {{-- @else
+                            <a href="" class="btn btn-primary btn-sm disabled">ReIssue</a> --}}
 
                       @endif
 
