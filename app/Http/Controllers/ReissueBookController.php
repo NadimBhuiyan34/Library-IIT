@@ -9,11 +9,12 @@ class ReissueBookController extends Controller
     //
      public function index()
     {
-     $book_request = BookRequest::where('reissue','reissue')
-                                ->where('fine',0)
-                                // ->where('return_date','<',Carbon::today())
-                                 ->latest('created_at')
-                                 ->get();
+        $book_request = BookRequest::where('reissue','reissue')
+                            ->where('reissue', 'reissued')
+                            ->where('fine',0)
+                            // ->where('return_date','<',Carbon::today())
+                                ->latest('created_at')
+                                ->get();
 
         return view('admin.manage_request.reissue',compact('book_request'));
     }
@@ -24,7 +25,7 @@ class ReissueBookController extends Controller
         $threeDaysFromToday = $today->copy()->addDays(3);
          $reissue = BookRequest::where('id', $id)->update(['return_date'=>$threeDaysFromToday,'reissue'=>'reissued']);
 
-         
+
       return redirect()->back()->withMessage('Book Reissue Accepted');
     }
 
