@@ -15,6 +15,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResearchSupervisionController;
@@ -69,13 +70,19 @@ Route::middleware('auth')->controller(EventController::class)->group(function(){
   Route::get('/user/event','index')->name('user.event.index');
 });
 
+//Teacher Profile Info
+
 Route::middleware('auth')->group(function() {
   Route::resource('research-supervisions', ResearchSupervisionController::class);
 });
 Route::middleware('auth')->group(function() {
   Route::resource('teachings', TeachingController::class);
 });
+Route::middleware('auth')->group(function() {
+  Route::resource('educations', EducationController::class);
+});
 
+//End Teacher profile info
 Route::middleware('auth')->controller(ProfileController::class)->group(function(){
 
   Route::get('/user/profile','index')->name('user.profile.index');
