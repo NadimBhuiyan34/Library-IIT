@@ -45,7 +45,7 @@ class SendOverdueEmails extends Command
 
             // Mail::to($userEmail)->send(new OverdueNotification( $userName,  $book_title, $fine));
 
-            $request->users()->notify(new NotificationsOverdueNotification($request));
+            $request->users->notify(new NotificationsOverdueNotification($request));
 
 
             // Mark the book request as notified to prevent multiple notifications

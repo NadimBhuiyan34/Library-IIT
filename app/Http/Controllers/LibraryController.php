@@ -12,7 +12,7 @@ class LibraryController extends Controller
     public function index()
     {
         $book_request = BookRequest::where('user_id', auth()->user()->id)
-                            ->where('status', '!=', 'return')
+                            // ->where('status', '!=', 'return')
                             ->latest('created_at')
                             ->get();
 

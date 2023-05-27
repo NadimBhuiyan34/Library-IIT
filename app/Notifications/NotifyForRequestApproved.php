@@ -45,7 +45,7 @@ class NotifyForRequestApproved extends Notification
         return (new MailMessage)
                     ->subject('Book request approved')
                     ->line('Your request for ' . $this->bookRequest->product->name . ' is approved.')
-                    ->action('Notification Action', url('/library-dashboard'))
+                    //->action('Notification Action', url('/library-dashboard'))
                     ->line('Thank you for using our application!');
     }
 

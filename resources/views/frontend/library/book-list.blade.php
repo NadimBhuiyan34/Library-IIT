@@ -2,24 +2,24 @@
  <x-frontend.layout.master>
 	<x-slot name="title">Library</x-slot>
   
- <div class="breadcrumbs mb-5">
+ <div class="breadcrumbs mb-2">
       <div class="container">
         <h2>Get Book From Online Library</h2>
          
       </div>
     </div>
        <div class="row">
-          <div class="input-group mb-2 w-50 mx-auto bg-dark" >
+          <div class="input-group mb-3 mt-1 w-50 mx-auto bg-dark" >
            <input type="text" class="form-control shadow " placeholder="Search here" style="border-radius:20px;" id="search">
  
           </div>
        </div>
  <x-backend.alertmessage.alertmessage type="success"/>
-    <div class="row container-fluid">
+    <div class="row container-fluid mt-2">
          @foreach ($books as $book)
-        <div class="col-md-3 col-6 col-xl-3 col-sm-6 col-md-4 mx-auto gap-1">
+        <div class="col-md-3  col-6 col-xl-3 col-sm-6 col-md-4 mx-auto gap-1">
 
-           <div class="card p-2 py-3 text-center border-left-info mx-auto mb-3">
+           <div class="card p-2 py-3 text-center border-left-info mx-auto mb-3" style="height:18rem;">
                     
         <div class="img mb-2 d-flex">
 
@@ -38,7 +38,7 @@
             <p>{{ $book->bookedition }}</p>
 
         
-        <div class="mt-1 apointment d-flex justify-content-center gap-2">
+        <div class=" mt-auto apointment d-flex justify-content-center gap-2">
 
 
  <form id="add-book-request" action="{{ route('book.request') }}" method="POST">

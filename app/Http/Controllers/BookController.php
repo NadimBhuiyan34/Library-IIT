@@ -18,7 +18,7 @@ class BookController extends Controller
         $categories=Category::all();
 
         
-        $books = Product::latest()->paginate(4);
+        $books = Product::latest()->paginate(2);
         return view('admin.book.index', compact('books','categories'));
     }
 

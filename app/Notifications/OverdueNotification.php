@@ -45,7 +45,7 @@ class OverdueNotification extends Notification
         return (new MailMessage)
                     ->subject('Return the book soon')
                     ->line('This \'' . $this->bookRequest->product->title . '\' needs to be returned within ' . $this->bookRequest->return_date)
-                    ->action('Notification Action', url('/library-dashboard'))
+                   // ->action('Notification Action', url('/library-dashboard'))
                     ->line('Thank you for using our application!');
     }
 

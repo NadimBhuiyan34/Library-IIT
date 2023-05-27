@@ -63,6 +63,12 @@
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#teachings">Teachings</button>
                 </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#teachings">Teachings</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#teachings">Teachings</button>
+                </li>
 
               </ul>
               <div class="tab-content pt-2">

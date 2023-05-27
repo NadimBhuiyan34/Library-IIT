@@ -43,7 +43,7 @@ class RequestBookController extends Controller
 
 
         // Notify the user
-        $bookRequest->users()->notify(new NotifyForRequestApproved($bookRequest));
+        $bookRequest->users->notify(new NotifyForRequestApproved($bookRequest));
 
         return redirect()->back()->withMessage('Request Approved');
     }

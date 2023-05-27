@@ -23,8 +23,8 @@
                     <img src="{{ asset('storage/profiles').'/'.$teacherDetails->profile->image }}" class="card-img-top mx-auto" alt="..." style="width:200px;height:200px">
                     <div class="card-body">
                         <h5 class="card-title">{{ $teacherDetails->name }}</h5>
-                        <p class="card-text">{{ $teacher->profile->profession  ? $teacher->profile->profession:'No proffession'}}</p>
-                        <p class="card-text">{{ $teacher->email }}</p>
+                        <p class="card-text">{{ $teacherDetails->profile->profession  ? $teacherDetails->profile->profession:'No proffession'}}</p>
+                        <p class="card-text">{{ $teacherDetails->email }}</p>
                     </div>
                 </div>
             </div>
