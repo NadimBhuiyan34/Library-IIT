@@ -16,8 +16,10 @@ class ProfileController extends Controller
         $teachings = auth()->user()->Teaching()->get();
         $educations = auth()->user()->education()->get();
         $publications = auth()->user()->Publication()->get();
+        $awards = auth()->user()->Award()->get();
+        $memberships = auth()->user()->Membership()->get();
         
-        return view('frontend.profile.index',compact('user_profile', 'research_supervisions','teachings','educations','publications'));
+        return view('frontend.profile.index',compact('user_profile', 'research_supervisions','teachings','educations','publications','awards','memberships'));
     }
     public function adminIndex()
     {

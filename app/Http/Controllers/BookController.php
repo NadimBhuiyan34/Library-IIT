@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Product;
 use App\Models\Category;
 use App\Http\Requests\BookRequest;
@@ -15,11 +16,11 @@ class BookController extends Controller
      */
     public function index()
     {
-        $categories=Category::all();
+        $categories = Category::all();
 
-        
+
         $books = Product::latest()->paginate(2);
-        return view('admin.book.index', compact('books','categories'));
+        return view('admin.book.index', compact('books', 'categories'));
     }
 
     /**
@@ -29,8 +30,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        $categories=Category::all();
-        return view('backend.products.create',compact('categories'));
+        $categories = Category::all();
+        return view('backend.products.create', compact('categories'));
     }
 
     /**
@@ -41,24 +42,25 @@ class BookController extends Controller
      */
     public function store(BookRequest $request)
     {
-        
-        
-    if($file=$request->file('bookimage')){
-        $filename=date('dmY').time().'.'.$file->getClientOriginalExtension();
-        $file->move(storage_path('app/public/books'),$filename);
-    }
 
-    Product::create([
-        'booktitle'=>$request->booktitle,
-        'bookauthor'=>$request->bookauthor,
-        'bookedition'=>$request->bookedition,
-        'bookquantity'=>$request->bookquantity,
-        'status' => $request->is_active ?? false,
-        'bookimage'=>$filename??'',
-        'category_id'=>$request->category,
-    ]
-   );
-   return redirect()->route('books.index')->withMessage('New book successfully added')->withType('success');
+
+        if ($file = $request->file('bookimage')) {
+            $filename = date('dmY') . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(storage_path('app/public/books'), $filename);
+        }
+
+        Product::create(
+            [
+                'booktitle' => $request->booktitle,
+                'bookauthor' => $request->bookauthor,
+                'bookedition' => $request->bookedition,
+                'bookquantity' => $request->bookquantity,
+                'status' => $request->is_active ?? false,
+                'bookimage' => $filename ?? '',
+                'category_id' => $request->category,
+            ]
+        );
+        return redirect()->route('books.index')->withMessage('New book successfully added')->withType('success');
     }
 
     /**
@@ -69,9 +71,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        
-     $productshow=Product::findOrFail($id);
-     return view('backend.products.show',compact('productshow'));
+
+        $productshow = Product::findOrFail($id);
+        return view('backend.products.show', compact('productshow'));
     }
 
     /**
@@ -82,8 +84,10 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $productedit=Product::findOrFail($id);
-     return view('backend.products.edit',compact('productedit'));
+        $book = Product::findOrFail($id);
+        $categories = Category::all();
+
+        return view('admin.book.edit', compact('book', 'categories'));
     }
 
     /**
@@ -95,25 +99,28 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-    if($file=$request->file('bookimage')){
-        $filename=date('dmY').time().'.'.$file->getClientOriginalExtension();
-        $file->move(storage_path('app/public/products'),$filename);
-        $productupdate=Product::findOrFail($id);
-        $productupdate->update([
-  
-            'booktitle'=>$request->booktitle,
-            'bookauthor'=>$request->bookauthor,
-            'bookedition'=>$request->bookedition,
-            'bookquantity'=>$request->bookquantity,
-            'price'=>$request->price,
+        $filename = null;
+        if ($file = $request->file('bookimage')) {
+            $filename = date('dmY') . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(storage_path('app/public/products'), $filename);
+        }
+        $productupdate = Product::findOrFail($id);
+        $data = [
+            'booktitle' => $request->booktitle,
+            'bookauthor' => $request->bookauthor,
+            'bookedition' => $request->bookedition,
+            'bookquantity' => $request->bookquantity,
+            'price' => $request->price,
             'status' => $request->is_active ?? false,
-            'bookimage'=>$filename??'',
-            'category_id'=>$request->category??'2',
-         ]
-         );
-         return redirect()->route('products.index')->withMessage('Successfully updated');
-    }
+            'category_id' => $request->category ?? '2',
+        ];
+
+        if ($filename) {
+            $data['bookimage'] = $filename;
+        }
+
+        $productupdate->update($data);
+        return redirect()->route('books.index')->withMessage('Successfully updated');
     }
 
     /**
@@ -124,8 +131,11 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-    
+        try {
+            Product::findOrFail($id)->delete();
+        } catch (\Exception $ex) {
+            return redirect()->route('books.index')->withMessage('Can not remove book. Book is already collected by someone.');
+        }
+        return redirect()->route('books.index')->withMessage('Successfully deleted');
     }
-
-   
 }

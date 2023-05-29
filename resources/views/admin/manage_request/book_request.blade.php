@@ -26,20 +26,22 @@
                     <th scope="col">Book Author</th>
                     <th scope="col">Name</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Requested at</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                     @foreach ($book_request as $book)
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $book->product->booktitle }}</td>
                     <td>{{$book->product->bookauthor}}</td>
                   
                     <td>{{ $book->users->name }}</td>
                     
                     <td>{{ $book->status }} </td>
-                    <td><a href="{{ route('request.book.approved',['id'=>$book->id,'book_id'=>$book->book_id]) }}" class="btn btn-success btn-sm">Approved</a></td>
+                    <td>{{ $book->created_at->format('Y-m-d h:i A') }}</td>
+                    <td><a href="{{ route('request.book.approved',['id'=>$book->id,'book_id'=>$book->book_id]) }}" class="btn btn-success btn-sm">Approve</a></td>
                     
                   </tr>
                   @endforeach

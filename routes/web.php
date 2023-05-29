@@ -14,9 +14,11 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AwardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\ResearchSupervisionController;
@@ -84,6 +86,12 @@ Route::middleware('auth')->group(function() {
 });
 Route::middleware('auth')->group(function() {
   Route::resource('publications', PublicationController::class);
+});
+Route::middleware('auth')->group(function() {
+  Route::resource('awards', AwardController::class);
+});
+Route::middleware('auth')->group(function() {
+  Route::resource('memberships', MembershipController::class);
 });
 
 //End Teacher profile info

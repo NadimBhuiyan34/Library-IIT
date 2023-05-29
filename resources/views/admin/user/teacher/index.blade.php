@@ -44,9 +44,11 @@
                 style="border-radius: 50%;width:50px;height:50px;" class="img-fluid" /></td>
             <td>{{ $teacher->status }} </td>
             <td class="d-flex gap-2">
-              <a href="{{ route('teachers.edit',['teacher'=>$teacher->id]) }}" class="btn btn-success btn-sm">Edit</a>
+              {{-- <a href="{{ route('teachers.edit',['teacher'=>$teacher->id]) }}" class="btn btn-success btn-sm">Edit</a> --}}
               <a href="{{ route('teacher-details',['id'=>$teacher->id]) }}" class="btn btn-primary btn-sm">Show</a>
-              <form action="{{ route('teachers.destroy',['teacher'=>$teacher->id]) }}">
+              <form method="POST" action="{{ route('teachers.destroy',['teacher'=>$teacher->id]) }}">
+                @csrf
+                @method('DELETE')
                 <button class="btn btn-danger btn-sm" type="submit">Delete</button>
               </form>
             </td>

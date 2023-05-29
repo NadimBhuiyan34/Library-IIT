@@ -210,25 +210,45 @@
                                     <th>Description</th>
                                 </tr>
                             </thead>
+                          
                             <tbody>
-                                <tr>
-                                    <td>Research project 1</td>
-                                    <td>ABC Research Institute</td>
-                                    <td>2021-01-01</td>
-                                    <td>2021-01-01</td>
-                                    <td>2021-01-01</td>
-                                </tr>
-
+                                @forelse ($teacherDetails->Award as $as)
+                                    <tr>
+                                        <td>{{ $as->award_type }}</td>
+                                        <td>{{ $as->title }}</td>
+                                        <td>{{ $as->year }}</td>
+                                        <td>{{ $as->country }}</td>
+                                        <td>{{ $as->description }}</td>
+                                        
+                                       
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">
+                                            No awards information found
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
+                                
                         </table>
                     </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                      <p> <b>Azad</b> </p>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $teacherDetails->name }}</h5><br>
+                            <p class="card-text">{{ $teacherDetails->profile->profession  ? $teacherDetails->profile->profession:'No proffession'}}</p>
+                            <p class="card-text">{{ $teacherDetails->email }}</p>
+                        </div>
+                      
+                      
+                      
+                      
+                        {{-- <p> <b>Azad</b> </p>
                        <p>Professor</p>
                        <p>IIT</p>
                        <p>Email:azad@gmail.com</p>
                        <p>Mobile:018</p>
-                       <p><a href="https://www.example.com">Click here to visit Example.com</a></p>
+                       <p><a href="https://www.example.com">Click here to visit Example.com</a></p> --}}
 
                     </div>
                     <div class="tab-pane fade " id="membership" role="tabpanel" aria-labelledby="membership-tab">
@@ -244,14 +264,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Research project 1</td>
-                                    <td>ABC Research Institute</td>
-                                    <td>ABC Research Institute</td>
 
-                                    <td>2021-01-01</td>
-                                    <td>2021-01-01</td>
+                                @forelse ($teacherDetails->Membership as $ms)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $ms->type }}</td>
+                                    <td>{{ $ms->name }}</td>
+                                    <td>{{ $ms->membership_year }}</td>
+                                    <td>{{ $ms->expire_year }}</td>
+                                   
                                 </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        No memberships information found
+                                    </td>
+                                </tr>
+                            @endforelse
 
                             </tbody>
                         </table>

@@ -84,6 +84,7 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-       ;
+       User::findOrFail($id)->delete();
+       return redirect()->back()->withMessage('Teacher removed successfully');
     }
 }

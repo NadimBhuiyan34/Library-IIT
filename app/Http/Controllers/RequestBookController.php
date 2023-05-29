@@ -15,7 +15,7 @@ class RequestBookController extends Controller
     public function index()
     {
         $book_request = BookRequest::where('status', 'request')
-            ->latest('created_at')
+            ->orderBy('created_at')
             ->get();
 
         return view('admin.manage_request.book_request', compact('book_request'));
@@ -36,8 +36,13 @@ class RequestBookController extends Controller
         $stock = Product::where('id', $book_id)
             ->first();
 
+        $quantity = $stock->bookquantity - 1;
+        if ($quantity < 0) $quantity = 0;
+        $total_request = $stock->total_request - 1;
+        if ($total_request < 0) $total_request = 0;
+
         Product::where('id', $book_id)
-            ->update(['bookquantity' => $stock->bookquantity - 1, 'total_request' => $stock->total_request - 1]);
+            ->update(['bookquantity' => $quantity, 'total_request' => $total_request]);
 
         // deacrese request
 

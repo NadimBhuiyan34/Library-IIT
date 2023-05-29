@@ -31,7 +31,7 @@
                     class="bi bi-facebook text-primary fs-5 me-2"></i></a>
                 <a href="#" class="instagram"><i class="bi bi-instagram text-warning fs-5 me-2"></i></a>
                 <a href="{{ $user->profile->linkedin_url }}" class="linkedin"><i
-                    class="bi bi-linkedin text-primary fs-5 "></i></a>
+                    class="bi bi-google text-primary fs-5 "></i></a>
               </div>
             </div>
           </div>
@@ -75,6 +75,12 @@
                 </li>
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#publications">Publications</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#awards">Awards</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#memberships">Memberships</button>
                 </li>
 
               </ul>
@@ -326,6 +332,109 @@
                   </div>
                 </div>
 
+                {{-- //Award --}}
+
+                <div class="tab-pane fade awards" id="awards">
+                  <h5 class="card-title">awards</h5>
+                  <h6 class="text-end pe-5"><a class="btn btn-primary"
+                      href="{{route('awards.create')}}">Add new</a></h6>
+
+                  <div class="row">
+                    <table class="table table-responsive">
+                      <thead>
+                          <tr>
+                              <th>Award Type</th>
+                              <th>Title</th>
+                              <th>Year</th>
+                              <th>Country</th>
+                              <th>Description</th>
+                              <th width="200px">Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @forelse ($awards as $as)
+                              <tr>
+                                  <td>{{ $as->award_type }}</td>
+                                  <td>{{ $as->title }}</td>
+                                  <td>{{ $as->year }}</td>
+                                  <td>{{ $as->country }}</td>
+                                  <td>{{ $as->description }}</td>
+                                  
+                                  <td>
+                                      <a href="{{ route('awards.edit', $as->id) }}"
+                                          class="btn btn-sm btn-outline-warning">Edit</a>
+                                      <form class="d-inline" method="post"
+                                          action="{{ route('awards.destroy', $as->id) }}">
+                                          @csrf
+                                          @method('delete')
+                                          <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                      </form>
+                                  </td>
+                              </tr>
+                          @empty
+                              <tr>
+                                  <td colspan="6" class="text-center">
+                                      No awards information found
+                                  </td>
+                              </tr>
+                          @endforelse
+                      </tbody>
+                  </table>
+                  </div>
+                </div>
+
+                {{-- Membershp --}}
+                <div class="tab-pane fade memberships" id="memberships">
+                  <h5 class="card-title">Memberships</h5>
+                  <h6 class="text-end pe-5"><a class="btn btn-primary"
+                      href="{{route('memberships.create')}}">Add new</a></h6>
+
+                  <div class="row">
+                    <table class="table table-responsive">
+                      <thead>
+                          <tr>
+                            <th>SL</th>
+                                    <th>Collaboration & Membership Name</th>
+                                    <th>Type</th>
+                                    <th>Membership Year	</th>
+                                    <th>Expire Year </th>
+                                    <th width="200px">Actions</th>
+                             
+                          </tr>
+                      </thead>
+                      <tbody>
+                        @forelse ($memberships as $ms)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $ms->type }}</td>
+                            <td>{{ $ms->name }}</td>
+                            <td>{{ $ms->membership_year }}</td>
+                            <td>{{ $ms->expire_year }}</td>
+                            
+                            
+                            <td>
+                                <a href="{{ route('memberships.edit', $ms->id) }}"
+                                    class="btn btn-sm btn-outline-warning">Edit</a>
+                                <form class="d-inline" method="post"
+                                    action="{{ route('memberships.destroy', $ms->id) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                No memberships information found
+                            </td>
+                        </tr>
+                    @endforelse
+                      </tbody>
+                  </table>
+                  </div>
+                </div>
+
 
                 {{-- <div class="tab-pane fade teachings" id="teachings">
                   <h5 class="card-title">Teachings</h5>
@@ -409,14 +518,7 @@
                           style="height: 100px">{{ $user->profile->description }}</textarea>
                       </div>
                     </div>
-                    {{--
-                    <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company"
-                          value="Lueilwitz, Wisoky and Leuschke">
-                      </div>
-                    </div> --}}
+                   
 
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">Profession</label>
@@ -481,7 +583,7 @@
                     </div> --}}
 
                     <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
+                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Google Scholar Profile</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="linkedin_url" type="text" class="form-control" id="Linkedin"
                           value="{{ $user->profile->linkedin_url }}">
