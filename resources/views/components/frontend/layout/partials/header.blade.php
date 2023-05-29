@@ -19,14 +19,17 @@
               <li><a href="{{ route('get-book') }}">Get Book</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Faculty</span> <i class="bi bi-chevron-down"></i></a>
+
+          <li><a class="" href="{{ route('teacher-list') }}">Faculty</a></li>
+
+          {{-- <li class="dropdown"><a href="#"><span>Faculty</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               
             
               <li><a href="{{ route('teacher-list') }}">Teacher</a></li>
               <li><a href="{{ route('student-list') }}">Student</a></li>
             </ul>
-          </li>
+          </li> --}}
            
         
 

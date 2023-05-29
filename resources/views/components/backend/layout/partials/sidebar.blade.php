@@ -9,7 +9,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-     <li class="nav-item">
+     {{-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Faculty</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -31,19 +31,39 @@
           </li>
           
         </ul>
-      </li><!-- End Tables Nav -->
+      </li> --}}
+      <!-- End Tables Nav -->
 
     
  
 
       
 
-      <li class="nav-heading">Pages</li>
-
+      {{-- <li class="nav-heading">Pages</li> --}}
+     
+      <!-- End Profile Page Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.html">
           <i class="bi bi-person"></i>
           <span>Carousel</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('register')  }}">
+          <i class="bi bi-person"></i>
+          <span>User Registration</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('teachers.index') }}">
+          <i class="bi bi-person"></i>
+          <span>Teacher</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('students.index') }}">
+          <i class="bi bi-person"></i>
+          <span>Student</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">

@@ -100,7 +100,7 @@
                  <x-backend.alertmessage.alertmessage type="success"/> 
                 
                 <select name="category" id="" class="form-select" aria-label="Default select example">
-                    <option value="">Select Chategory</option>
+                    <option value="">Select Category</option>
                     @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                     @endforeach
@@ -143,7 +143,7 @@
       </div>
     </div>
   </div>
-  <script>
+  {{-- <script>
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -159,5 +159,5 @@
             console.log(title+description);
         })
     })
-  </script>
+  </script> --}}
 </x-backend.layout.master>

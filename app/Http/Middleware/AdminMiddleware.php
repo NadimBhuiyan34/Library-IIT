@@ -22,13 +22,10 @@ class AdminMiddleware
             } else {
                 return abort(401);
             }
-            
-        }
-
-        else {
+        } else {
             return redirect()->route('auth.login');
         }
             return $next($request);
-        }
+    }
 
 }
