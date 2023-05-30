@@ -1,16 +1,30 @@
- 
- <x-frontend.layout.master>
-	<x-slot name="title">HomePage</x-slot>
-	   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex justify-content-center align-items-center">
+<x-frontend.layout.master>
+  <x-slot name="title">HomePage</x-slot>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 100px);">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Learning Today,<br>Leading Tomorrow</h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
-      <a href="courses.html" class="btn-get-started">Get Started</a>
+      {{-- <h2>We are team of talented designers making websites with Bootstrap</h2> --}}
+      {{-- <a href="#" class="btn-get-started">Get Started</a> --}}
     </div>
   </section><!-- End Hero -->
-	
-  <main id="main">
+  <main  class="my-4">
+    <div class="container px-5 pt-5 text-center">
+      <h5 pt-2>
+        The Institute of Information Technology (IIT) at Noakhali Science and Technology University (NSTU) was established
+        with the goal of creating expert software engineers. 
+        <h5>The institute focuses on providing specialized education and
+          training in the field of information technology and software development.</h5> 
+{{--   
+        The curriculum of the Institute of Information Technology is designed to equip students with the necessary
+        knowledge and skills to excel in the rapidly evolving field of software engineering. It combines theoretical
+        knowledge with practical hands-on experience to ensure that students are well-prepared for the challenges of the
+        industry. --}}
+      </h5>
+    </div>
+   
+  </main>
+  {{-- <main id="main">
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -23,16 +37,20 @@
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
             <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore
               magna aliqua.
             </p>
             <ul>
               <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
               <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                pariatur.</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate
             </p>
 
           </div>
@@ -48,22 +66,26 @@
         <div class="row counters">
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1"
+              class="purecounter"></span>
             <p>Students</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1"
+              class="purecounter"></span>
             <p>Courses</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1"
+              class="purecounter"></span>
             <p>Events</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
+              class="purecounter"></span>
             <p>Trainers</p>
           </div>
 
@@ -81,8 +103,10 @@
             <div class="content">
               <h3>Why Choose Mentor?</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad
+                corporis.
               </p>
               <div class="text-center">
                 <a href="about.html" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
@@ -224,7 +248,8 @@
                 </div>
 
                 <h3><a href="course-details.html">Website Design</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem
+                  tempore.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
@@ -250,7 +275,8 @@
                 </div>
 
                 <h3><a href="course-details.html">Search Engine Optimization</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem
+                  tempore.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
@@ -276,7 +302,8 @@
                 </div>
 
                 <h3><a href="course-details.html">Copywriting</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem
+                  tempore.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
@@ -309,7 +336,8 @@
                 <h4>Walter White</h4>
                 <span>Web Development</span>
                 <p>
-                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut
+                  aut aut
                 </p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
@@ -328,7 +356,8 @@
                 <h4>Sarah Jhinson</h4>
                 <span>Marketing</span>
                 <p>
-                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum
+                  temporibus
                 </p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
@@ -364,9 +393,11 @@
       </div>
     </section><!-- End Trainers Section -->
 
-  </main><!-- End #main --> 
+  </main> --}}
+  <!-- End #main -->
 
- <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
 </x-frontend.layout.master>

@@ -19,7 +19,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="{{ asset('storage/profiles').'/'.$user->profile->image }}" alt="Profile" class="rounded-circle"
+              <img src="{{ asset('storage/profiles').'/'.$user->profile->image }}" alt="Profile Image" class="rounded-circle"
                 style="width:100px ;height:100px">
               <h2>{{ $user->name }}</h2>
               <span class="badge bg-success">{{ $user->profile->profession }}</span>
@@ -36,7 +36,9 @@
           </div>
 
         </div>
-
+@php
+  $user = $user_profile->first();
+@endphp
         <div class="col-xl-8">
 
           <div class="card">
@@ -53,15 +55,16 @@
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                   <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-change-password">Change
                     Password</button>
                 </li>
 
+                @if ($user->role == 'teacher')
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#research-supervisions">Research
                     Supervisions</button>
@@ -81,6 +84,7 @@
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#memberships">Memberships</button>
                 </li>
+                @endif
 
               </ul>
               <div class="tab-content pt-2">

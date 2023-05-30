@@ -39,12 +39,9 @@ Route::get('/', function () {
     return view('frontend/home');
 })->name('homepage');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 require __DIR__.'/auth.php';
 // frontend all route
 Route::middleware('auth')->controller(LibraryController::class)->group(function(){
-
     Route::get('/library-dashboard','index')->name('library-dashboard');
     Route::get('/get-book','booklist')->name('get-book');
     Route::get('/teacher-list','teacherlist')->name('teacher-list');
@@ -53,106 +50,65 @@ Route::middleware('auth')->controller(LibraryController::class)->group(function(
     Route::post('/book/request','request_store')->name('book.request');
     Route::get('/request-cancel/{id}/{book_id}','destroy')->name('request.destroy');
     Route::get('/user-reissue/{id}','reissue')->name('user.reissue');
-
 });
 
 Route::middleware('auth')->controller(ContactUsController::class)->group(function(){
-
   Route::get('/user/contactus','index')->name('user.contactus.index');
   Route::post('/contactus','store')->name('user.contactus.store');
-
 });
 
-Route::middleware('auth')->controller(AboutUsController::class)->group(function(){
-
+Route::controller(AboutUsController::class)->group(function(){
   Route::get('/user/aboutus','index')->name('user.aboutus.index');
 });
 
-Route::middleware('auth')->controller(EventController::class)->group(function(){
-
+Route::controller(EventController::class)->group(function(){
   Route::get('/user/event','index')->name('user.event.index');
 });
 
 //Teacher Profile Info
 
 Route::middleware('auth')->group(function() {
-  Route::resource('research-supervisions', ResearchSupervisionController::class);
-});
-Route::middleware('auth')->group(function() {
-  Route::resource('teachings', TeachingController::class);
-});
-Route::middleware('auth')->group(function() {
-  Route::resource('educations', EducationController::class);
-});
-Route::middleware('auth')->group(function() {
-  Route::resource('publications', PublicationController::class);
-});
-Route::middleware('auth')->group(function() {
-  Route::resource('awards', AwardController::class);
-});
-Route::middleware('auth')->group(function() {
-  Route::resource('memberships', MembershipController::class);
+  Route::middleware(['role:teacher'])->group(function() {
+    Route::resource('research-supervisions', ResearchSupervisionController::class);
+    Route::resource('teachings', TeachingController::class);
+    Route::resource('educations', EducationController::class);
+    Route::resource('publications', PublicationController::class);
+    Route::resource('awards', AwardController::class);
+    Route::resource('memberships', MembershipController::class);
+  });
+
+  Route::controller(ProfileController::class)->group(function(){
+    Route::get('/user/profile','index')->name('user.profile.index');
+    Route::patch('/user/profile','updateProfile')->name('user.profile.update');
+    Route::patch('/change/password','changePassword')->name('user.change.password');
+  });
 });
 
-//End Teacher profile info
-Route::middleware('auth')->controller(ProfileController::class)->group(function(){
+Route::middleware(['auth', 'role:admin'])->group(function() {
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  
+  Route::resource('teachers', TeacherController::class);
+  Route::resource('students', StudentController::class);
 
-  Route::get('/user/profile','index')->name('user.profile.index');
-  Route::patch('/user/profile','updateProfile')->name('user.profile.update');
-  Route::patch('/change/password','changePassword')->name('user.change.password');
-});
+  Route::resource('categories', CategoryController::class);
+  Route::resource('books', BookController::class);
+//  Route::resource('carousels', CarouselController::class)->middleware(['auth','role']);
+  
+  Route::get('/admin-profile',[ProfileController::class, 'adminIndex'])->name('admin.profile.index');
+  
+  Route::get('/reissuebooks',[ReissueBookController::class, 'index'])->name('reissue.book.index');
+  Route::get('/reissuebooks/{id}',[ReissueBookController::class, 'reissue'])->name('reissue.book.reissue');
 
-// end frontend all route
+  Route::get('/returnbooks',[ReturnBookController::class, 'index'])->name('return.book.index');
 
-// admin category,carousel,and book add
- Route::resource('categories', CategoryController::class)->middleware(['auth','isAdmin']);
-//  Route::resource('carousels', CarouselController::class)->middleware(['auth','isAdmin']);
- Route::resource('books', BookController::class)->middleware(['auth','isAdmin']);
-// end admin category,carousel,and book add
+  Route::get('/issuebooks',[IssueBookController::class, 'index'])->name('issue.book.index');
+  Route::get('/issuebooks/{id}/{book_id}',[IssueBookController::class, 'return'])->name('issue.book.return');
 
+  Route::get('/approvedbooks',[ApprovedBookController::class, 'index'])->name('approved.book.index');
+  Route::get('/approvedbooks/{id}',[ApprovedBookController::class, 'issue'])->name('approved.book.issue');
 
-//  student and teacher user list of admin
- Route::resource('teachers', TeacherController::class)->middleware(['auth','isAdmin']);
- Route::resource('students', StudentController::class)->middleware(['auth','isAdmin']);
-// end student and teacher user list of admin
-
-
-// manage library book request and status change of admin
-Route::middleware(['auth','isAdmin'])->controller(RequestBookController::class)->group(function(){
-
-  Route::get('/requestbooks','index')->name('request.book.index');
-  Route::get('/requestbooks/{id}/{book_id}','approved')->name('request.book.approved');
-
-});
-
-Route::middleware(['auth','isAdmin'])->controller(ApprovedBookController::class)->group(function(){
-
-  Route::get('/approvedbooks','index')->name('approved.book.index');
-  Route::get('/approvedbooks/{id}','issue')->name('approved.book.issue');
-
-});
-
-Route::middleware(['auth','isAdmin'])->controller(IssueBookController::class)->group(function(){
-
-  Route::get('/issuebooks','index')->name('issue.book.index');
-  Route::get('/issuebooks/{id}/{book_id}','return')->name('issue.book.return');
-
-});
-Route::middleware(['auth','isAdmin'])->controller(ReturnBookController::class)->group(function(){
-
-  Route::get('/returnbooks','index')->name('return.book.index');
-
-});
-Route::middleware(['auth','isAdmin'])->controller(ReissueBookController::class)->group(function(){
-
-  Route::get('/reissuebooks','index')->name('reissue.book.index');
-  Route::get('/reissuebooks/{id}','reissue')->name('reissue.book.reissue');
-
-});
-Route::middleware(['auth','isAdmin'])->controller(ProfileController::class)->group(function(){
-
-  Route::get('/admin-profile','adminIndex')->name('admin.profile.index');
-
+  Route::get('/requestbooks',[RequestBookController::class, 'index'])->name('request.book.index');
+  Route::get('/requestbooks/{id}/{book_id}',[RequestBookController::class, 'approved'])->name('request.book.approved');
 
 });
 //end manage book library request and status change of admin

@@ -38,7 +38,7 @@
   <link href="{{ asset('frontend/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-  <link href="{{ asset('frontend/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  {{-- <link href="{{ asset('frontend/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet"> --}}
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">

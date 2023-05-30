@@ -12,15 +12,15 @@
     </div><!-- End Breadcrumbs -->
 
     <!-- ======= Trainers Section ======= -->
-    <section id="trainers" class="trainers">
+    <section id="trainers" class="trainers mt-3 pt-3">
       <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           @foreach ($user_teacher as $teacher)
             
       
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch ">
-            <div class="member border-start border-info px-2">
+          <div class="col-md-4 d-flex align-items-stretch ">
+            <div class="member border-start px-2 rounded shadow">
               <img src="{{ asset('storage/profiles').'/'.$teacher->profile->image }}" class="img-fluid rounded-5 mt-2" alt="" style="height:200px; width:200px">
               <div class="member-content">
                 <h4>{{ $teacher->name }}</h4>
