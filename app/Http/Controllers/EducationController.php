@@ -47,7 +47,7 @@ class EducationController extends Controller
             'passing_year' => $request->passing_year,
             
         ]);
-        return redirect()->back()->withMessage('Education created successfully');
+        return redirect()->route('user.profile.index')->withMessage('Education created successfully');
     }
 
     /**
@@ -101,6 +101,6 @@ class EducationController extends Controller
     public function destroy(Education $education)
     {
         $education->delete();
-        return redirect()->back()->withMessage('Education deleted successfully');
+        return redirect()->route('user.profile.index')->withMessage('Education deleted successfully');
     }
 }

@@ -47,7 +47,7 @@ class ResearchSupervisionController extends Controller
             'area_of_research' => $request->area_of_research,
             'completion' => $request->completion,
         ]);
-        return redirect()->back()->withMessage('Research supervision created successfully');
+        return redirect()->route('user.profile.index')->withMessage('Research supervision created successfully');
     }
 
     /**
@@ -89,7 +89,7 @@ class ResearchSupervisionController extends Controller
             'area_of_research' => $request->area_of_research,
             'completion' => $request->completion,
         ]);
-        return redirect()->back()->withMessage('Research supervision updated successfully');
+        return redirect()->route('user.profile.index')->withMessage('Research supervision updated successfully');
     }
 
     /**

@@ -50,7 +50,7 @@ class AwardController extends Controller
             
             
         ]);
-        return redirect()->back()->withMessage('Award created successfully');
+        return redirect()->route('user.profile.index')->withMessage('Award created successfully');
     }
 
     /**
@@ -92,7 +92,7 @@ class AwardController extends Controller
             'description' => $request->description,
            
         ]);
-        return redirect()->back()->withMessage('Award updated successfully');
+        return redirect()->route('user.profile.index')->withMessage('Award updated successfully');
     }
 
     /**
@@ -104,7 +104,7 @@ class AwardController extends Controller
     public function destroy(Award $Award)
     {
         $Award->delete();
-        return redirect()->back()->withMessage('Award deleted successfully');
+        return redirect()->route('user.profile.index')->withMessage('Award deleted successfully');
     }
 }
 

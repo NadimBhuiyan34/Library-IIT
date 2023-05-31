@@ -50,7 +50,7 @@ class MembershipController extends Controller
             
             
         ]);
-        return redirect()->back()->withMessage('Membership created successfully');
+        return redirect()->route('user.profile.index')->withMessage('Membership created successfully');
     }
 
     /**
@@ -91,7 +91,7 @@ class MembershipController extends Controller
             'expire_year' => $request->expire_year,
            
         ]);
-        return redirect()->back()->withMessage('Membership updated successfully');
+        return redirect()->route('user.profile.index')->withMessage('Membership updated successfully');
     }
 
     /**

@@ -48,7 +48,7 @@ class PublicationController extends Controller
             'journal_link' => $request->journal_link,
             
         ]);
-        return redirect()->back()->withMessage('Publication created successfully');
+        return redirect()->route('user.profile.index')->withMessage('Publication created successfully');
     }
 
     /**
@@ -89,7 +89,7 @@ class PublicationController extends Controller
             'journal_link' => $request->journal_link,
            
         ]);
-        return redirect()->back()->withMessage('Publication updated successfully');
+        return redirect()->route('user.profile.index')->withMessage('Publication updated successfully');
     }
 
     /**
